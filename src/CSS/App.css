@@ -1,0 +1,98 @@
+/* Fullscreen splash container */
+.splash-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Parallax container for the background */
+.parallax-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.parallax-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.background-image {
+  position: absolute;
+  top: 50%;
+  /* Center vertically */
+  left: 50%;
+  /* Center horizontally */
+  transform: translate(-50%, -50%);
+  /* Adjust for centering */
+  width: 110%;
+  /* Slightly zoom in the image to prevent edge exposure */
+  height: 110%;
+  /* Slightly zoom in the image to prevent edge exposure */
+  object-fit: cover;
+}
+
+/* Center the splash content */
+.splash-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+}
+
+/* Circle portrait container with tilt */
+.tilt-portrait {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.portrait-container {
+  display: inline-block;
+}
+
+.portrait {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Splash page headings and text */
+.splash-content h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.splash-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+/* Button styles */
+.splash-content button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  color: #282c34;
+  transition: transform 0.3s ease-in-out;
+}
+
+.splash-content button:hover {
+  transform: scale(1.1);
+}

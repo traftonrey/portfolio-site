@@ -13,6 +13,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Request OIDC Token
+        id: oidc-token
+        run: |
+            echo "Token: ${{ steps.oidc-token.outputs.token }}"
+
+      - name: Decode Token
+        run: |
+            echo "${{ steps.oidc-token.outputs.token }}" | base64 --decode | jq '.'
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:

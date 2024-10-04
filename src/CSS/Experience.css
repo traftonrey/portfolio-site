@@ -1,51 +1,345 @@
-/* Experience section */
+/* General container for the section */
 .Experience-section {
-    padding: 50px 20px;
-    background-color: #f5f5f5;
+    padding: 50px;
+    background-color: #f9f9f9;
     text-align: center;
 }
 
 .Experience-section h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 40px;
     color: #333;
+    font-weight: bold;
 }
 
+/* Grid container for experience cards */
 .Experience-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-items: center;
 }
 
+/* Each experience card */
 .Experience-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 300px;
-    width: 100%;
+    background-color: #fff;
+    border-left: 4px solid #333;
+    border-radius: 8px;
+    padding: 20px 30px;
     text-align: left;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.Experience-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .Experience-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.Experience-card p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-}
-
-.Experience-card a {
-    text-decoration: none;
-    color: #61dafb;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: #333;
     font-weight: bold;
-    display: inline-block;
-    margin-top: 10px;
 }
 
-.Experience-card a:hover {
-    text-decoration: underline;
+/* Company and dates */
+.Experience-card .company-and-dates {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.Experience-card .company-and-dates strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Job type */
+.Experience-card .job-type {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Top skills */
+.Experience-card .skills {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.Experience-card .skills strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.Experience-card .skills ul {
+    padding-left: 20px;
+    margin-top: 10px;
+    list-style-type: disc;
+}
+
+/* Modal styles */
+/* Blur effect for the site-container when the modal is open */
+.blur-background {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+/* Overlay for Modal */
+.ReactModal__Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal content styles */
+.ReactModal__Content {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 2000;
+}
+
+/* Modal body */
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* Technologies list with scrollability */
+.modal-body ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.modal-body ul.scrollable {
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Close button */
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* General container for the section */
+.Experience-section {
+    padding: 50px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.Experience-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Grid container for experience cards */
+.Experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 5%;
+    justify-items: center;
+}
+
+/* Each experience card */
+.Experience-card {
+    background-color: #fff;
+    border-left: 4px solid #333;
+    border-radius: 8px;
+    padding: 15px 30px;
+    text-align: left;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.Experience-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.Experience-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Company and type, aligned in the same row */
+.company-and-dates {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.company-and-dates strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.job-type {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Date on its own line, without extra space between lines */
+.company-and-dates .date {
+    display: block;
+    /* Forces date to a new line */
+    font-size: 0.85rem;
+    /* Smaller font size */
+    color: #666;
+    margin-top: 2px;
+    /* Slight space between type and date */
+}
+
+
+/* Top skills section */
+.skills {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.skills strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.skills ul {
+    padding-left: 20px;
+    margin-top: 10px;
+    list-style-type: disc;
+}
+
+/* Modal styles */
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    z-index: 1000;
+}
+
+.ReactModal__Content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Modal body */
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* Technologies list with scrollability */
+.modal-body ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Custom scrollbar styling */
+.modal-body ul.scrollable {
+    max-height: 150px;
+    /* Limit height for long lists */
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.modal-body ul.scrollable::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body ul.scrollable::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.modal-body ul.scrollable::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+.modal-body ul.scrollable::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.modal-body ul li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Close button */
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
 }

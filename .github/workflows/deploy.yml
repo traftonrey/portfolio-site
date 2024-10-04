@@ -1,21 +1,34 @@
-name: Deploy to S3
+name: Deploy React App to S3
+
 on:
   push:
     branches:
-      - main
+      - main  # Deploy only on pushes to the main branch
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Configure AWS credentials from OpenID Connect (OIDC)
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the React app
+        run: npm run build
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Build and deploy
-        run: |
-          npm install
-          npm run build
-          aws s3 sync build/ s3://trafton-portfolio --delete
+
+      - name: Deploy to S3
+        run: aws s3 sync build/ s3://${{ secrets.S3_BUCKET_NAME }} --delete

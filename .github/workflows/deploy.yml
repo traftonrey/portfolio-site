@@ -5,10 +5,6 @@ on:
     branches:
       - main  # Deploy only on pushes to the main branch
 
-permissions:
-      id-token: write   # This is required for requesting the JWT
-      contents: read 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -31,9 +27,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::545009853462:role/Github_CI-CD_Portfolio
-          aws-region: us-east-2
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
           audience: sts.amazonaws.com
           
       - name: Deploy to S3
-        run: aws s3 sync dist/ s3://trafton-portfolio --delete
+        run: aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete

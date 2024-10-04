@@ -5,7 +5,8 @@ const Projects = () => {
     return (
         <section id="projects" className="projects-section">
             <h2>My Projects</h2>
-            <div className="projects-grid">
+            <h3 style={{ color: 'red' }}>Dev in Progress! Check back later to see my projects!<p>Last update 10/4/2024</p></h3>
+            {/* <div className="projects-grid">
                 <div className="project-card">
                     <h3>Project One</h3>
                     <p>A brief description of the project goes here. This can include technologies used and the project's purpose.</p>
@@ -21,8 +22,8 @@ const Projects = () => {
                     <p>A brief description of the project goes here. This can include technologies used and the project's purpose.</p>
                     <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
                 </div>
-            </div>
-        </section>
+            </div> */}
+        </section >
     );
 };
 

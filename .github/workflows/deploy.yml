@@ -13,15 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Request OIDC Token
-        id: oidc-token
-        run: |
-            echo "Token: ${{ steps.oidc-token.outputs.token }}"
-
-      - name: Decode Token
-        run: |
-            echo "${{ steps.oidc-token.outputs.token }}" | base64 --decode | jq '.'
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -33,12 +24,39 @@ jobs:
       - name: Build the React app
         run: npm run build
 
+      - name: Debug AWS_ROLE_ARN
+        run: |
+          if [ -z "${{ secrets.AWS_ROLE_ARN }}" ]; then
+            echo "AWS_ROLE_ARN is not set"
+            exit 1
+          else
+            echo "AWS_ROLE_ARN is set"
+          fi
+      
+      - name: Debug AWS_REGION
+        run: |
+          if [ -z "${{ secrets.AWS_REGION }}" ]; then
+            echo "AWS_REGION is not set"
+            exit 1
+          else
+            echo "AWS_REGION is set"
+          fi
+      
+      - name: Debug S3_BUCKET_NAME
+        run: |
+          if [ -z "${{ secrets.S3_BUCKET_NAME }}" ]; then
+            echo "S3_BUCKET_NAME is not set"
+            exit 1
+          else
+            echo "S3_BUCKET_NAME is set"
+          fi
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          aws-region: ${{ secrets.AWS_REGION }}  # Ensure region is set correctly
+          aws-region: ${{ secrets.AWS_REGION }}
           audience: sts.amazonaws.com
           
       - name: Deploy to S3
-        run: aws s3 sync build/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+        run: aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
